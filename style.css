@@ -1,0 +1,1591 @@
+/* =========================================
+   QUIZSPHERE
+   ONLINE QUIZ APPLICATION
+   CSS SOURCE CODE
+========================================= */
+
+
+/* =========================================
+   1. ROOT VARIABLES
+========================================= */
+
+:root {
+    --bg: #070a13;
+    --panel: #101522;
+    --panel2: #151c2d;
+
+    --text: #eef3ff;
+    --muted: #8d98b2;
+
+    --accent: #7c5cff;
+    --accent2: #00d4ff;
+
+    --success: #20d38a;
+    --danger: #ff5d73;
+    --warning: #ffbd59;
+
+    --border: rgba(255, 255, 255, 0.09);
+
+    --shadow:
+        0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================
+   2. GLOBAL RESET
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            #18234a 0,
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            #17394c 0,
+            transparent 25%
+        ),
+        var(--bg);
+
+    color: var(--text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    overflow-x: hidden;
+}
+
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+
+/* =========================================
+   3. ANIMATED BACKGROUND
+========================================= */
+
+#space {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -1;
+
+    overflow: hidden;
+}
+
+.orb {
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(5px);
+
+    opacity: 0.22;
+
+    animation:
+        floating 12s ease-in-out infinite;
+}
+
+
+/* Purple Orb */
+
+.orb1 {
+    width: 280px;
+    height: 280px;
+
+    background: #7c5cff;
+
+    left: -80px;
+    top: 15%;
+}
+
+
+/* Blue Orb */
+
+.orb2 {
+    width: 230px;
+    height: 230px;
+
+    background: #00d4ff;
+
+    right: -50px;
+    top: 55%;
+
+    animation-delay: -4s;
+}
+
+
+/* Pink Orb */
+
+.orb3 {
+    width: 160px;
+    height: 160px;
+
+    background: #ff4fd8;
+
+    left: 45%;
+    bottom: -40px;
+
+    animation-delay: -7s;
+}
+
+
+/* Background Animation */
+
+@keyframes floating {
+
+    0% {
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(30px, -40px)
+            scale(1.12);
+    }
+
+    100% {
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
+}
+
+
+/* =========================================
+   4. LOGIN PAGE
+========================================= */
+
+.login {
+    min-height: 100vh;
+
+    display: grid;
+
+    place-items: center;
+
+    padding: 20px;
+}
+
+.login-box {
+    width: min(100%, 500px);
+
+    padding: 35px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 26px;
+
+    background:
+        rgba(10, 15, 27, 0.85);
+
+    backdrop-filter:
+        blur(22px);
+
+    box-shadow:
+        var(--shadow);
+}
+
+.login-logo {
+    text-align: center;
+}
+
+.logo {
+    width: 75px;
+    height: 75px;
+
+    margin: auto;
+
+    border-radius: 23px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent2)
+        );
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 32px;
+
+    box-shadow:
+        0 15px 45px
+        rgba(98, 84, 255, 0.27);
+}
+
+.login-box h1 {
+    text-align: center;
+
+    margin:
+        18px 0 5px;
+
+    font-size: 32px;
+}
+
+.login-sub {
+    text-align: center;
+
+    color: var(--muted);
+
+    margin-bottom: 25px;
+}
+
+.login-fields {
+    display: grid;
+
+    gap: 13px;
+}
+
+.login-fields input {
+    width: 100%;
+
+    padding: 14px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: #080d18;
+
+    color: white;
+
+    outline: none;
+}
+
+.login-fields input:focus {
+    border-color:
+        var(--accent);
+}
+
+.login-fields button {
+    width: 100%;
+
+    margin-top: 5px;
+
+    padding: 14px;
+}
+
+.login-note {
+    text-align: center;
+
+    font-size: 12px;
+
+    margin-top: 18px;
+}
+
+
+/* =========================================
+   5. COMMON BUTTONS
+========================================= */
+
+.primary {
+    border: 0;
+
+    border-radius: 12px;
+
+    padding: 12px 17px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            #5a86ff
+        );
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+    box-shadow:
+        0 10px 25px
+        rgba(105, 84, 255, 0.17);
+}
+
+.primary:hover {
+    transform:
+        translateY(-2px);
+}
+
+.ghost,
+.iconbtn {
+    border:
+        1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 11px 15px;
+
+    color: white;
+
+    background:
+        rgba(255,255,255,0.03);
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.ghost:hover,
+.iconbtn:hover {
+    background:
+        rgba(255,255,255,0.08);
+}
+
+
+/* =========================================
+   6. MAIN APPLICATION
+========================================= */
+
+#app {
+    display: none;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   7. SIDEBAR
+========================================= */
+
+.sidebar {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 250px;
+
+    padding: 25px 16px;
+
+    background:
+        rgba(8, 12, 23, 0.84);
+
+    backdrop-filter:
+        blur(22px);
+
+    border-right:
+        1px solid var(--border);
+
+    z-index: 20;
+}
+
+.brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    font-size: 22px;
+
+    font-weight: 900;
+
+    margin:
+        5px 10px 35px;
+}
+
+.brand span {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent2)
+        );
+
+    box-shadow:
+        0 8px 25px
+        rgba(98, 77, 255, 0.25);
+}
+
+
+/* Navigation */
+
+.nav {
+    display: grid;
+
+    gap: 7px;
+}
+
+.nav button {
+    border: 0;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    padding: 13px 14px;
+
+    border-radius: 12px;
+
+    text-align: left;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.nav button b {
+    margin-right: 11px;
+
+    font-size: 16px;
+}
+
+.nav button:hover,
+.nav button.active {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(124,92,255,0.13),
+            rgba(0,212,255,0.03)
+        );
+
+    color: white;
+}
+
+
+/* Sidebar Profile */
+
+.side-bottom {
+    position: absolute;
+
+    bottom: 22px;
+
+    left: 16px;
+    right: 16px;
+}
+
+.mini-profile {
+    padding: 13px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 15px;
+
+    background:
+        rgba(255,255,255,0.02);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent2)
+        );
+
+    display: grid;
+
+    place-items: center;
+
+    font-weight: 800;
+}
+
+
+/* =========================================
+   8. MAIN CONTENT
+========================================= */
+
+main {
+    margin-left: 250px;
+
+    padding: 28px;
+
+    max-width: 1500px;
+}
+
+
+/* Top Bar */
+
+.topbar {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.topbar h2 {
+    margin: 0;
+
+    font-size: 27px;
+}
+
+.topbar p {
+    margin:
+        5px 0 0;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+.top-actions {
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+}
+
+
+/* =========================================
+   9. PAGE SYSTEM
+========================================= */
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+
+/* =========================================
+   10. HERO SECTION
+========================================= */
+
+.hero {
+    padding: 30px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124,92,255,0.10),
+            rgba(0,212,255,0.03)
+        );
+
+    box-shadow:
+        var(--shadow);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 34px;
+
+    margin:
+        12px 0 9px;
+}
+
+.hero p {
+    color: #b6c0d5;
+
+    max-width: 680px;
+
+    line-height: 1.6;
+}
+
+.hero-icon {
+    font-size: 90px;
+
+    align-self: center;
+}
+
+
+/* =========================================
+   11. STATISTICS
+========================================= */
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin: 18px 0;
+}
+
+.stat {
+    background:
+        rgba(15,21,35,0.84);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 19px;
+
+    padding: 20px;
+
+    box-shadow:
+        var(--shadow);
+
+    font-size: 20px;
+}
+
+.stat small {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin-top: 5px;
+}
+
+.stat strong {
+    display: block;
+
+    font-size: 28px;
+
+    margin-top: 8px;
+}
+
+
+/* =========================================
+   12. COMMON CARDS
+========================================= */
+
+.card,
+.big-card {
+    background:
+        rgba(15,21,35,0.84);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 19px;
+
+    padding: 20px;
+
+    box-shadow:
+        var(--shadow);
+}
+
+.big-card {
+    padding: 26px;
+
+    border-radius: 23px;
+
+    background:
+        rgba(13,19,32,0.90);
+}
+
+
+/* =========================================
+   13. GRID LAYOUT
+========================================= */
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr;
+
+    gap: 18px;
+}
+
+.section-title {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin:
+        26px 0 12px;
+}
+
+.section-title h3 {
+    margin: 0;
+}
+
+
+/* =========================================
+   14. CATEGORY CARDS
+========================================= */
+
+.category-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 14px;
+}
+
+.cat {
+    padding: 20px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 18px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.cat:hover {
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(124,92,255,0.4);
+}
+
+.cat .emoji {
+    font-size: 30px;
+}
+
+.cat h4 {
+    margin:
+        12px 0 5px;
+}
+
+.cat p {
+    font-size: 12px;
+
+    color: var(--muted);
+
+    margin: 0;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   15. PILLS
+========================================= */
+
+.pill {
+    display: inline-block;
+
+    padding:
+        5px 9px;
+
+    border-radius: 99px;
+
+    font-size: 11px;
+
+    background:
+        rgba(255,255,255,0.05);
+
+    color: #bdc7dd;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+
+/* =========================================
+   16. RECENT RESULTS
+========================================= */
+
+.quiz-list {
+    display: grid;
+
+    gap: 10px;
+}
+
+.quiz-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 14px;
+
+    border-radius: 13px;
+
+    background:
+        rgba(255,255,255,0.02);
+
+    border:
+        1px solid var(--border);
+}
+
+.quiz-row b {
+    font-size: 14px;
+}
+
+.quiz-row span {
+    font-size: 12px;
+
+    color: var(--muted);
+}
+
+
+/* =========================================
+   17. QUIZ SETUP
+========================================= */
+
+.setup-box {
+    max-width: 850px;
+
+    margin: auto;
+}
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+.field label {
+    display: block;
+
+    font-size: 12px;
+
+    color: var(--muted);
+
+    margin-bottom: 7px;
+}
+
+.field input,
+.field select {
+    width: 100%;
+
+    padding: 13px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 11px;
+
+    background: #090e1a;
+
+    color: white;
+
+    outline: none;
+}
+
+.field input:focus,
+.field select:focus {
+    border-color:
+        var(--accent);
+}
+
+
+/* =========================================
+   18. CHALLENGE MODE
+========================================= */
+
+.option-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 10px;
+}
+
+.choice {
+    padding: 13px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.choice:hover {
+    border-color:
+        var(--accent);
+}
+
+.choice.selected {
+    border-color:
+        var(--accent);
+
+    background:
+        rgba(124,92,255,0.13);
+}
+
+.start-button {
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 15px;
+}
+
+
+/* =========================================
+   19. LIVE QUIZ
+========================================= */
+
+.quiz-head {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+.quiz-head h3 {
+    margin-top: 10px;
+}
+
+
+/* Timer */
+
+.timer {
+    font-size: 20px;
+
+    font-weight: 800;
+
+    padding:
+        10px 15px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,93,115,0.08);
+
+    color:
+        #ff9aaa;
+}
+
+
+/* Progress */
+
+.progress {
+    height: 8px;
+
+    background:
+        rgba(255,255,255,0.05);
+
+    border-radius: 99px;
+
+    margin: 18px 0;
+
+    overflow: hidden;
+}
+
+.progress i {
+    display: block;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            var(--accent2)
+        );
+
+    border-radius: 99px;
+
+    transition: 0.3s;
+}
+
+
+/* Question Information */
+
+.question-info {
+    display: flex;
+
+    justify-content: space-between;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+/* Question */
+
+.qtext {
+    font-size: 23px;
+
+    line-height: 1.4;
+
+    margin: 25px 0;
+}
+
+
+/* Answers */
+
+.answers {
+    display: grid;
+
+    gap: 12px;
+}
+
+.answer {
+    padding: 17px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 15px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    cursor: pointer;
+
+    display: flex;
+
+    gap: 12px;
+
+    align-items: center;
+
+    transition: 0.2s;
+}
+
+.answer:hover {
+    border-color:
+        rgba(124,92,255,0.4);
+}
+
+.answer.selected {
+    border-color:
+        var(--accent);
+
+    background:
+        rgba(124,92,255,0.10);
+}
+
+.letter {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,0.05);
+
+    display: grid;
+
+    place-items: center;
+
+    font-weight: 800;
+}
+
+
+/* Quiz Navigation */
+
+.quiz-nav {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 24px;
+}
+
+
+/* Question Palette */
+
+.palette {
+    display: grid;
+
+    grid-template-columns:
+        repeat(10, 1fr);
+
+    gap: 7px;
+}
+
+.pbtn {
+    padding: 9px 0;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 9px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    color: #aab5ce;
+
+    cursor: pointer;
+}
+
+.pbtn.done {
+    background:
+        rgba(32,211,138,0.11);
+
+    color:
+        #5df0b3;
+
+    border-color:
+        rgba(32,211,138,0.35);
+}
+
+.pbtn.current {
+    outline:
+        2px solid var(--accent);
+}
+
+
+/* =========================================
+   20. RESULT PAGE
+========================================= */
+
+.result-hero {
+    text-align: center;
+
+    padding: 35px;
+}
+
+.result-hero h1 {
+    margin:
+        18px 0;
+}
+
+
+/* Score Circle */
+
+.score-circle {
+    width: 170px;
+    height: 170px;
+
+    border-radius: 50%;
+
+    margin:
+        10px auto 20px;
+
+    background:
+        conic-gradient(
+            var(--accent)
+            var(--score),
+            rgba(255,255,255,0.05) 0
+        );
+
+    display: grid;
+
+    place-items: center;
+
+    position: relative;
+}
+
+.score-circle::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 12px;
+
+    border-radius: 50%;
+
+    background:
+        #0d1320;
+}
+
+.score-circle span {
+    position: relative;
+
+    z-index: 1;
+
+    font-size: 40px;
+
+    font-weight: 900;
+}
+
+
+/* Result Metrics */
+
+.result-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+}
+
+.metric {
+    text-align: center;
+
+    padding: 17px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 14px;
+}
+
+.metric strong {
+    display: block;
+
+    font-size: 22px;
+
+    margin: 6px 0;
+}
+
+.metric small {
+    color: var(--muted);
+}
+
+
+/* Result Buttons */
+
+.result-buttons {
+    margin-top: 22px;
+
+    display: flex;
+
+    gap: 10px;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+}
+
+
+/* Chart */
+
+.chart-box {
+    height: 300px;
+}
+
+
+/* Summary */
+
+.summary {
+    line-height: 1.7;
+
+    margin-top: 15px;
+}
+
+
+/* =========================================
+   21. ANSWER REVIEW
+========================================= */
+
+.review-list {
+    display: grid;
+
+    gap: 12px;
+}
+
+.review-list .card {
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   22. TABLE
+========================================= */
+
+.table-container {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 13px;
+
+    text-align: left;
+
+    border-bottom:
+        1px solid var(--border);
+
+    font-size: 13px;
+
+    white-space: nowrap;
+}
+
+.table th {
+    color: var(--muted);
+}
+
+.table td {
+    color: #dfe6f8;
+}
+
+
+/* Status Badge */
+
+.badge {
+    display: inline-block;
+
+    padding:
+        5px 9px;
+
+    border-radius: 99px;
+
+    background:
+        rgba(32,211,138,0.09);
+
+    color:
+        #58e9aa;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   23. PROFILE
+========================================= */
+
+.profile {
+    display: grid;
+
+    grid-template-columns:
+        280px 1fr;
+
+    gap: 18px;
+}
+
+.profile-card {
+    text-align: center;
+}
+
+.big-avatar {
+    width: 95px;
+    height: 95px;
+
+    border-radius: 27px;
+
+    margin: 10px auto;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent2)
+        );
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 35px;
+
+    font-weight: 900;
+}
+
+.profile-card h2 {
+    margin:
+        15px 0 5px;
+}
+
+.save-button {
+    margin-top: 18px;
+}
+
+
+/* =========================================
+   24. ACHIEVEMENTS
+========================================= */
+
+.achievements {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+}
+
+.achievement {
+    padding: 17px;
+
+    text-align: center;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 15px;
+
+    background:
+        rgba(255,255,255,0.025);
+}
+
+.achievement div {
+    font-size: 30px;
+}
+
+.achievement h4 {
+    margin:
+        10px 0 5px;
+}
+
+.achievement small {
+    color: var(--muted);
+}
+
+
+/* =========================================
+   25. TOAST MESSAGE
+========================================= */
+
+.toast {
+    position: fixed;
+
+    right: 20px;
+
+    bottom: 20px;
+
+    padding:
+        14px 18px;
+
+    background:
+        #151d30;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 13px;
+
+    box-shadow:
+        var(--shadow);
+
+    transform:
+        translateY(120px);
+
+    transition: 0.3s;
+
+    z-index: 99;
+}
+
+.toast.show {
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================
+   26. MODAL
+========================================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0,0,0,0.60);
+
+    display: none;
+
+    place-items: center;
+
+    z-index: 80;
+
+    padding: 20px;
+}
+
+.modal.show {
+    display: grid;
+}
+
+.modal-box {
+    max-width: 420px;
+
+    width: 100%;
+
+    background:
+        #101827;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    box-shadow:
+        var(--shadow);
+}
+
+.modal-box h3 {
+    margin-top: 0;
+}
+
+.modal-actions {
+    display: fle

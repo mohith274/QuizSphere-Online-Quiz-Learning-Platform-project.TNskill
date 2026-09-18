@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QuizSphere - Online Quiz Application</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+    <div id="space">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+    </div>
+
+
+    <!-- =========================
+         LOGIN PAGE
+    ========================== -->
+
+    <section id="login" class="login">
+
+        <div class="login-box">
+
+            <div class="login-logo">
+
+                <div class="logo">
+                    🧠
+                </div>
+
+                <h1>QuizSphere</h1>
+
+                <p class="login-sub">
+                    Smart Online Quiz & Learning Platform
+                </p>
+
+            </div>
+
+
+            <div class="login-fields">
+
+                <input
+                    type="text"
+                    id="loginName"
+                    placeholder="Student Name"
+                >
+
+                <input
+                    type="text"
+                    id="loginReg"
+                    placeholder="Register Number"
+                >
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Email Address"
+                >
+
+                <input
+                    type="password"
+                    id="loginPass"
+                    placeholder="Password"
+                >
+
+                <button
+                    class="primary"
+                    onclick="enterApp()"
+                >
+                    Enter QuizSphere →
+                </button>
+
+            </div>
+
+            <p class="muted login-note">
+                Demo application • Data is saved in your browser
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MAIN APPLICATION
+    ========================== -->
+
+    <section id="app">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="brand">
+
+                <span>🧠</span>
+
+                <strong>
+                    QuizSphere
+                </strong>
+
+            </div>
+
+
+            <div class="nav">
+
+                <button
+                    class="active"
+                    data-page="dashboard"
+                >
+                    <b>⌂</b>
+                    <span>Dashboard</span>
+                </button>
+
+
+                <button data-page="quizzes">
+
+                    <b>▣</b>
+
+                    <span>
+                        Quiz Center
+                    </span>
+
+                </button>
+
+
+                <button data-page="categories">
+
+                    <b>◈</b>
+
+                    <span>
+                        Categories
+                    </span>
+
+                </button>
+
+
+                <button data-page="history">
+
+                    <b>◷</b>
+
+                    <span>
+                        My Results
+                    </span>
+
+                </button>
+
+
+                <button data-page="leaderboard">
+
+                    <b>♛</b>
+
+                    <span>
+                        Leaderboard
+                    </span>
+
+                </button>
+
+
+                <button data-page="profile">
+
+                    <b>●</b>
+
+                    <span>
+                        Profile
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- Mini Profile -->
+
+            <div class="side-bottom">
+
+                <div class="mini-profile">
+
+                    <div
+                        class="avatar"
+                        id="sideAvatar"
+                    >
+                        S
+                    </div>
+
+                    <div>
+
+                        <b id="sideName">
+                            Student
+                        </b>
+
+                        <br>
+
+                        <small>
+                            Quiz Learner
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =========================
+             MAIN CONTENT
+        ========================== -->
+
+        <main>
+
+            <!-- TOP BAR -->
+
+            <div class="topbar">
+
+                <div>
+
+                    <h2 id="pageTitle">
+                        Dashboard
+                    </h2>
+
+                    <p id="pageSub">
+                        Track your learning and quiz performance.
+                    </p>
+
+                </div>
+
+
+                <div class="top-actions">
+
+                    <button
+                        class="ghost"
+                        onclick="showPage('profile')"
+                    >
+                        👤 Profile
+                    </button>
+
+
+                    <button
+                        class="primary"
+                        onclick="showPage('quizzes')"
+                    >
+                        + Start Quiz
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 DASHBOARD
+            ========================== -->
+
+            <section
+                id="dashboard"
+                class="page active"
+            >
+
+                <div class="hero">
+
+                    <div>
+
+                        <span class="pill">
+                            STUDENT PORTAL
+                        </span>
+
+
+                        <h1>
+                            Welcome back,
+                            <span id="heroName">
+                                Student
+                            </span>
+                            👋
+                        </h1>
+
+
+                        <p>
+                            Test your knowledge, improve your
+                            skills and track your performance
+                            across multiple computer science
+                            subjects.
+                        </p>
+
+
+                        <button
+                            class="primary"
+                            onclick="showPage('quizzes')"
+                        >
+                            Start a New Quiz →
+                        </button>
+
+                    </div>
+
+
+                    <div class="hero-icon">
+                        🚀
+                    </div>
+
+                </div>
+
+
+                <!-- Statistics -->
+
+                <div class="stats">
+
+                    <div class="stat">
+
+                        📝
+
+                        <small>
+                            Quizzes Taken
+                        </small>
+
+                        <strong id="sTaken">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        🎯
+
+                        <small>
+                            Average Score
+                        </small>
+
+                        <strong id="sAvg">
+                            0%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        🏆
+
+                        <small>
+                            Best Score
+                        </small>
+
+                        <strong id="sBest">
+                            0%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        🔥
+
+                        <small>
+                            Current Streak
+                        </small>
+
+                        <strong id="sStreak">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="grid">
+
+                    <!-- Categories -->
+
+                    <div>
+
+                        <div class="section-title">
+
+                            <h3>
+                                Explore Categories
+                            </h3>
+
+                            <button
+                                class="ghost"
+                                onclick="showPage('categories')"
+                            >
+                                View all
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="category-grid"
+                            id="dashCats"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- Recent Results -->
+
+                    <div>
+
+                        <div class="section-title">
+
+                            <h3>
+                                Recent Results
+                            </h3>
+
+                        </div>
+
+
+                        <div class="card">
+
+                            <div
+                                class="quiz-list"
+                                id="recentResults"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 QUIZ CENTER
+            ========================== -->
+
+            <section
+                id="quizzes"
+                class="page"
+            >
+
+                <div class="setup-box">
+
+                    <div class="section-title">
+
+                        <h3>
+                            Quiz Center
+                        </h3>
+
+                        <span class="pill">
+                            CUSTOM QUIZ BUILDER
+                        </span>
+
+                    </div>
+
+
+                    <div class="big-card">
+
+                        <h2>
+                            Configure Your Quiz
+                        </h2>
+
+                        <p class="muted">
+                            Choose your subject, difficulty
+                            and challenge size.
+                        </p>
+
+
+                        <div class="form-grid">
+
+                            <div class="field">
+
+                                <label>
+                                    Category
+                                </label>
+
+                                <select id="qCategory"></select>
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>
+                                    Difficulty
+                                </label>
+
+                                <select id="qDifficulty">
+
+                                    <option>
+                                        Easy
+                                    </option>
+
+                                    <option selected>
+                                        Medium
+                                    </option>
+
+                                    <option>
+                                        Hard
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>
+                                    Number of Questions
+                                </label>
+
+                                <select id="qCount">
+
+                                    <option>
+                                        10
+                                    </option>
+
+                                    <option>
+                                        15
+                                    </option>
+
+                                    <option>
+                                        20
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>
+                                    Time Limit
+                                </label>
+
+                                <select id="qTime">
+
+                                    <option value="5">
+                                        5 Minutes
+                                    </option>
+
+                                    <option
+                                        value="10"
+                                        selected
+                                    >
+                                        10 Minutes
+                                    </option>
+
+                                    <option value="15">
+                                        15 Minutes
+                                    </option>
+
+                                    <option value="20">
+                                        20 Minutes
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Challenge Mode -->
+
+                        <div class="section-title">
+
+                            <h3>
+                                Challenge Mode
+                            </h3>
+
+                        </div>
+
+
+                        <div class="option-grid">
+
+                            <button
+                                class="choice selected"
+                                data-mode="standard"
+                            >
+                                🎓 Standard
+                            </button>
+
+
+                            <button
+                                class="choice"
+                                data-mode="speed"
+                            >
+                                ⚡ Speed Run
+                            </button>
+
+
+                            <button
+                                class="choice"
+                                data-mode="practice"
+                            >
+                                📖 Practice
+                            </button>
+
+
+                            <button
+                                class="choice"
+                                data-mode="random"
+                            >
+                                🎲 Random
+                            </button>
+
+                        </div>
+
+
+                        <button
+                            class="primary start-button"
+                            onclick="startQuiz()"
+                        >
+                            Start Quiz 🚀
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 CATEGORIES
+            ========================== -->
+
+            <section
+                id="categories"
+                class="page"
+            >
+
+                <div class="section-title">
+
+                    <h3>
+                        Quiz Categories
+                    </h3>
+
+                    <span class="muted">
+                        8 Subject Areas
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="category-grid"
+                    id="allCats"
+                ></div>
+
+            </section>
+
+
+            <!-- =========================
+                 LIVE QUIZ
+            ========================== -->
+
+            <section
+                id="quiz"
+                class="page"
+            >
+
+                <div class="big-card">
+
+                    <div class="quiz-head">
+
+                        <div>
+
+                            <span
+                                class="pill"
+                                id="quizCategoryLabel"
+                            >
+                                CATEGORY
+                            </span>
+
+                            <h3 id="quizTitle">
+                                Quiz
+                            </h3>
+
+                        </div>
+
+
+                        <div
+                            class="timer"
+                            id="timer"
+                        >
+                            10:00
+                        </div>
+
+                    </div>
+
+
+                    <!-- Progress Bar -->
+
+                    <div class="progress">
+
+                        <i
+                            id="progressBar"
+                            style="width:10%"
+                        ></i>
+
+                    </div>
+
+
+                    <div class="question-info">
+
+                        <span id="questionNo">
+                            Question 1 of 10
+                        </span>
+
+                        <span id="answeredNo">
+                            0 Answered
+                        </span>
+
+                    </div>
+
+
+                    <!-- Question -->
+
+                    <div
+                        class="qtext"
+                        id="questionText"
+                    ></div>
+
+
+                    <!-- Answer Options -->
+
+                    <div
+                        class="answers"
+                        id="answers"
+                    ></div>
+
+
+                    <!-- Quiz Navigation -->
+
+                    <div class="quiz-nav">
+
+                        <button
+                            class="ghost"
+                            onclick="prevQuestion()"
+                        >
+                            ← Previous
+                        </button>
+
+
+                        <button
+                            class="primary"
+                            id="nextBtn"
+                            onclick="nextQuestion()"
+                        >
+                            Next →
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Question Navigator -->
+
+                <div class="section-title">
+
+                    <h3>
+                        Question Navigator
+                    </h3>
+
+                    <span class="muted">
+                        Green = Answered
+                    </span>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div
+                        class="palette"
+                        id="palette"
+                    ></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 RESULT
+            ========================== -->
+
+            <section
+                id="result"
+                class="page"
+            >
+
+                <div class="big-card result-hero">
+
+                    <span class="pill">
+                        QUIZ COMPLETED
+                    </span>
+
+
+                    <h1 id="resultTitle">
+                        Excellent Performance! 🎉
+                    </h1>
+
+
+                    <!-- Score -->
+
+                    <div
+                        class="score-circle"
+                        id="scoreCircle"
+                        style="--score:0%"
+                    >
+
+                        <span id="resultPercent">
+                            0%
+                        </span>
+
+                    </div>
+
+
+                    <p
+                        class="muted"
+                        id="resultText"
+                    >
+                        Your result is ready.
+                    </p>
+
+
+                    <!-- Result Metrics -->
+
+                    <div class="result-grid">
+
+                        <div class="metric">
+
+                            ✓
+
+                            <strong id="rCorrect">
+                                0
+                            </strong>
+
+                            <small>
+                                Correct
+                            </small>
+
+                        </div>
+
+
+                        <div class="metric">
+
+                            ✕
+
+            
